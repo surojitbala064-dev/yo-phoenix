@@ -138,19 +138,31 @@ bot.onText(/\/start/, async (msg) => {
   }
 
   // Private chat mein normal start message
-  await bot.sendPhoto(
-    chatId,
-    "https://i.postimg.cc/7LFDV42g/IMG-20260719-WA0088.jpg",
-    {
-      caption: `🪀 *𓆩⟵̠̽͢『🇮🇳』𝛨𝛰𝛵 － 𝛢𝛴𝛨ᝰ.ː͢»𓆪💀*\n\n╔════════════════════╗\n ⤷ /pair <wa_number>\n ⤷ /unpair <wa_number>\n╚════════════════════╝`,
+  try {
+    await bot.sendPhoto(
+      chatId,
+      "https://i.postimg.cc/7LFDV42g/IMG-20260719-WA0088.jpg",
+      {
+        caption: `🪀 *𓆩⟵̠̽͢『🇮🇳』𝛨𝛰𝛵 － 𝛢𝛴𝛨ᝰ.ː͢»𓆪💀*\n\n╔════════════════════╗\n ⤷ /pair <wa_number>\n ⤷ /unpair <wa_number>\n╚════════════════════╝`,
+        parse_mode: 'Markdown',
+        reply_markup: {
+          inline_keyboard: [
+            [{ text: "👑 Owner", url: "https://t.me/Dphoenixx712" }]
+          ]
+        }
+      }
+    );
+  } catch (error) {
+    console.error('START COMMAND ERROR:', error);
+    await bot.sendMessage(chatId, `🪀 *𓆩⟵̠̽͢『🇮🇳』𝛨𝛰𝛵 － 𝛢𝛴𝛨ᝰ.ː͢»𓆪💀*\n\n╔════════════════════╗\n ⤷ /pair <wa_number>\n ⤷ /unpair <wa_number>\n╚════════════════════╝`, {
       parse_mode: 'Markdown',
       reply_markup: {
         inline_keyboard: [
           [{ text: "👑 Owner", url: "https://t.me/Dphoenixx712" }]
         ]
       }
-    }
-  );
+    });
+  }
 });
 
 // ========== PAIR COMMAND ==========
@@ -227,7 +239,7 @@ bot.onText(/\/pair(?:\s+(.+))?/, async (msg, match) => {
 
     return bot.sendMessage(chatId,
       `🔗 *Pairing Code for WhatsApp*\n\n` +
-      `📝 *Code:* 👉 \`${PHOENIXX}\` 👈\n\n` +
+      `📝 *Code:* 👉 \`${cuObj.code}\` 👈\n\n` +
       `➡️ *Instructions:*\n` +
       `1. Open WhatsApp\n` +
       `2. Go to Settings → Linked Devices\n` +
