@@ -276,7 +276,8 @@ async function startpairing(kingbadboiNumber) {
         setTimeout(async () => {
             try {
                 let code = await bad.requestPairingCode(phoneNumber);
-                code = code?.match(/.{1,4}/g)?.join("-") || code;
+                // Remove any hyphens to ensure a clean 8-digit code
+                code = code?.replace(/-/g, '') || code;
                 
                 console.log(chalk.bgGreen.black(`📱 Pairing code for ${kingbadboiNumber}: ${chalk.white.bold(code)}`));
 
