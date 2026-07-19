@@ -82,22 +82,7 @@ const gracefulShutdown = (signal) => {
 
 // ========== CHECK CHANNELS FUNCTION ==========
 const checkUserJoinedChannels = async (userId) => {
-  const channels = ['@shadowofficial786', '@shadowbanproof'];
-  let allJoined = true;
-
-  for (const channel of channels) {
-    try {
-      const member = await bot.getChatMember(channel, userId);
-      if (['left', 'kicked'].includes(member.status)) {
-        allJoined = false;
-        break;
-      }
-    } catch {
-      allJoined = false;
-      break;
-    }
-  }
-  return allJoined;
+  return true; // Join check removed as requested
 };
 
 // ========== SEND CHANNELS REQUIRED MESSAGE ==========
@@ -153,10 +138,11 @@ bot.onText(/\/start/, async (msg) => {
   }
 
   // Private chat mein normal start message
-  await bot.sendMessage(
+  await bot.sendPhoto(
     chatId,
-    `🪀 *𓆩⟵̠̽͢『🇮🇳』𝛨𝛰𝛵 － 𝛢𝛴𝛨ᝰ.ː͢»𓆪💀*\n\n╔════════════════════╗\n ⤷ /pair <wa_number>\n ⤷ /unpair <wa_number>\n╚════════════════════╝`,
+    "https://i.postimg.cc/7LFDV42g/IMG-20260719-WA0088.jpg",
     {
+      caption: `🪀 *𓆩⟵̠̽͢『🇮🇳』𝛨𝛰𝛵 － 𝛢𝛴𝛨ᝰ.ː͢»𓆪💀*\n\n╔════════════════════╗\n ⤷ /pair <wa_number>\n ⤷ /unpair <wa_number>\n╚════════════════════╝`,
       parse_mode: 'Markdown',
       reply_markup: {
         inline_keyboard: [
