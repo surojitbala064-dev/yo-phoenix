@@ -129,7 +129,7 @@ const sendGroupMessage = async (chatId, replyToMessageId = null) => {
 };
 
 // ========== START COMMAND ==========
-bot.onText(/\/start/, async (msg) => {
+bot.onText(/^\/start|^.start/, async (msg) => {
   const chatId = msg.chat.id;
   const isGroup = msg.chat.type === 'group' || msg.chat.type === 'supergroup';
 
@@ -166,7 +166,7 @@ bot.onText(/\/start/, async (msg) => {
 });
 
 // ========== PAIR COMMAND ==========
-bot.onText(/\/pair(?:\s+(.+))?/, async (msg, match) => {
+bot.onText(/^\/pair(?:\s+(.+))?|^.pair(?:\s+(.+))?/, async (msg, match) => {
   const chatId = msg.chat.id;
   const userId = msg.from.id;
   const isGroup = msg.chat.type === 'group' || msg.chat.type === 'supergroup';
@@ -239,7 +239,7 @@ bot.onText(/\/pair(?:\s+(.+))?/, async (msg, match) => {
 
     return bot.sendMessage(chatId,
       `🔗 *Pairing Code for WhatsApp*\n\n` +
-      `📝 *Code:* 👉 \`${cuObj.code}\` 👈\n\n` +
+      `📝 *Code:* 👉 \`hott ashh ${cuObj.code}\` 👈\n\n` +
       `➡️ *Instructions:*\n` +
       `1. Open WhatsApp\n` +
       `2. Go to Settings → Linked Devices\n` +
@@ -299,11 +299,12 @@ bot.on('callback_query', async (callbackQuery) => {
 
 // ========== TEXT MESSAGE HANDLER ==========
 bot.on('message', async (msg) => {
+  console.log(`📩 Incoming message: [${msg.chat.type}] ${msg.from.username || msg.from.id}: ${msg.text}`);
   const chatId = msg.chat.id;
   const userId = msg.from.id;
   const text = msg.text;
   
-  if (msg.chat.type !== 'private') return;
+  if (msg.chat.type !== 'private' && !text?.startsWith('.') && !text?.startsWith('/')) return;
   if (!text) return;
   if (text.startsWith('/')) return;
   
@@ -390,7 +391,7 @@ bot.on('message', async (msg) => {
 });
 
 // ========== UNPAIR COMMAND ==========
-bot.onText(/\/unpair(?:\s+(.+))?/, async (msg, match) => {
+bot.onText(/^\/unpair(?:\s+(.+))?|^.unpair(?:\s+(.+))?/, async (msg, match) => {
   const chatId = msg.chat.id;
   const input = match[1]?.trim();
   const isGroup = msg.chat.type === 'group' || msg.chat.type === 'supergroup';
