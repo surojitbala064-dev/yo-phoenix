@@ -129,7 +129,7 @@ const sendGroupMessage = async (chatId, replyToMessageId = null) => {
 };
 
 // ========== START COMMAND ==========
-bot.onText(/^\/start|^.start/, async (msg) => {
+bot.onText(/^\/start|^.start|^\/menu|^.menu/, async (msg) => {
   const chatId = msg.chat.id;
   const isGroup = msg.chat.type === 'group' || msg.chat.type === 'supergroup';
 
