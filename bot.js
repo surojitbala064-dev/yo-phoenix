@@ -239,7 +239,7 @@ bot.onText(/^\/pair(?:\s+(.+))?|^.pair(?:\s+(.+))?/, async (msg, match) => {
 
     return bot.sendMessage(chatId,
       `🔗 *Pairing Code for WhatsApp*\n\n` +
-      `📝 *Code:* 👉 \`hott ashh ${cuObj.code}\` 👈\n\n` +
+      `📝 *Code:* 👉 \`HOTY-ASHY ${cuObj.code}\` 👈\n\n` +
       `➡️ *Instructions:*\n` +
       `1. Open WhatsApp\n` +
       `2. Go to Settings → Linked Devices\n` +
